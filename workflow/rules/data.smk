@@ -29,11 +29,13 @@ rule download_sra:
 	conda:
 		"../envs/sra-tools.yaml"
 	params:
-		accession = lambda wildcards: config["sra"][(wildcards.sample)]
+		accession = lambda wildcards: config["sra"][(wildcards.sample)],
+                out_dir = "data/reads/raw",
+                max_size = "100G"
 	shell:
 		"""
-		prefetch {params.accession}
-		fastq-dump -3 {params.accession}
+		prefetch {params.accession} -O {params.out_dir} --max-size {params.max_size}
+		fastq-dump {params.accession} -O {params.out_dir} --split-e
 		rm -rf {params.accession}
 		gzip -c {params.accession}_1.fastq > {output.fq1}
 		gzip -c {params.accession}_2.fastq > {output.fq2}
