@@ -1,0 +1,17 @@
+include: "rules/data.smk"
+include: "rules/utils.smk"
+include: "rules/mapping.smk"
+include: "rules/octopus.smk"
+
+localrules: all
+
+rule all:
+	input:
+		expand("results/calls/{batch}.{library}.{reference}.{mapper}.{caller}.vcf.gz", \
+			batch = config["batches"], \
+			library = config["library"], \
+			caller = config["callers"], \
+			reference = config["reference"], \
+			mapper = config["mapper"])
+			
+			

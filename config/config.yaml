@@ -1,0 +1,49 @@
+library: Dong
+reference: hs38DH
+mapper: bwa
+mapper_options:
+    bwa: ""
+samples:
+    - C1
+    - C2
+    - C3
+    - IL11
+    - IL12
+    - IL1C
+    - IL2
+    - IL3
+    - IL4
+    - IL5
+minibulks:
+    C1: 30
+    C2: 30
+    C3: 30
+    IL1C: 30
+batches:
+    test:
+        - IL11
+        - IL12
+        - IL1C
+    # single_cells:
+    #     - IL11
+    #     - IL12
+    #     - IL2
+    #     - IL3
+    #     - IL4
+    # single_cells_and_minibulks:
+    #     - IL11
+    #     - IL12
+    #     - IL2
+    #     - IL3
+    #     - IL4
+    #     - C1
+    #     - C2
+    #     - C3
+callers:
+    - Octopus
+caller_options:
+    Octopus: "-C --mask-inverted-soft-clipping --mask-3prime-shifted-soft-clipped-heads --sequence-error-model 10X"
+sra:
+    IL11: SRR2976561
+    IL12: SRR2976562
+    IL1C: SRR2976563
