@@ -1,0 +1,8 @@
+name: sciphi
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+  - r
+dependencies:
+  - sciphi=0.1.7

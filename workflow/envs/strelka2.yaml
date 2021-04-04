@@ -1,9 +1,9 @@
-name: samtools
+name: strelka2
 channels:
     - bioconda
     - conda-forge
     - defaults
 dependencies:
-    - tabix=0.2.6
-    - samtools=1.12
-    - bcftools=1.12
+    - strelka=2.9.10-0
+    - bcftools
+    - tabix

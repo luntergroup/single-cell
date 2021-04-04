@@ -1,9 +1,8 @@
-name: samtools
+name: bedops
 channels:
     - bioconda
     - conda-forge
     - defaults
 dependencies:
-    - tabix=0.2.6
-    - samtools=1.12
+    - bedops=2.4.39
     - bcftools=1.12

@@ -1,0 +1,389 @@
+project: Wang
+reference: hs38DH
+mapper: bwa
+mapper_options:
+    bwa: ""
+samples:
+    - TNBC-Pop-Normal
+    - TNBC-Pop-Tumor
+    - a1
+    - a2
+    - a3
+    - a4
+    - a5
+    - a6
+    - a7
+    - a8
+    - h1
+    - h2
+    - h3
+    - h4
+    - h5
+    - h6
+    - h7
+    - h8
+    - TNBC-n1
+    - TNBC-n2
+    - TNBC-n3
+    - TNBC-n4
+    - TNBC-n5
+    - TNBC-n6
+    - TNBC-n7
+    - TNBC-n8
+    - TNBC-n9
+    - TNBC-n10
+    - TNBC-n11
+    - TNBC-n12
+    - TNBC-n13
+    - TNBC-n14
+    - TNBC-n15
+    - TNBC-n16
+groups:
+    bulks:
+        - TNBC-Pop-Normal
+        - TNBC-Pop-Tumor
+    cells:
+        - a1
+        - a2
+        - a3
+        - a4
+        - a5
+        - a6
+        - a7
+        - a8
+        - h1
+        - h2
+        - h3
+        - h4
+        - h5
+        - h6
+        - h7
+        - h8
+        - TNBC-n1
+        - TNBC-n2
+        - TNBC-n3
+        - TNBC-n4
+        - TNBC-n5
+        - TNBC-n6
+        - TNBC-n7
+        - TNBC-n8
+        - TNBC-n9
+        - TNBC-n10
+        - TNBC-n11
+        - TNBC-n12
+        - TNBC-n13
+        - TNBC-n14
+        - TNBC-n15
+        - TNBC-n16
+    controls:
+        - TNBC-Pop-Normal
+        - TNBC-Pop-Tumor
+    normals:
+        - TNBC-Pop-Normal
+        - TNBC-n1
+        - TNBC-n2
+        - TNBC-n3
+        - TNBC-n4
+        - TNBC-n5
+        - TNBC-n6
+        - TNBC-n7
+        - TNBC-n8
+        - TNBC-n9
+        - TNBC-n10
+        - TNBC-n11
+        - TNBC-n12
+        - TNBC-n13
+        - TNBC-n14
+        - TNBC-n15
+        - TNBC-n16
+test: cells
+truth_caller: Strelka2
+callers:
+    - Octopus
+    - SCcaller
+caller_options:
+    Octopus: ""
+    prosolo: ""
+    SCcaller: ""
+    MonoVar: ""
+    SCIPhi: ""
+caller_score_fields:
+    Octopus: RFGQ_ALL
+    MonoVar: QUAL
+    SCcaller: QUAL
+    prosolo: QUAL
+    SCIPhi: QUAL
+sra:
+    TNBC-Pop-Normal: SRR1163508
+    TNBC-Pop-Tumor: SRR1298936
+    TNBC-n1: SRR1163149
+    TNBC-n10: SRR1163158
+    TNBC-n11: SRR1163159
+    TNBC-n12: SRR1163160
+    TNBC-n13: SRR1163161
+    TNBC-n14: SRR1163162
+    TNBC-n15: SRR1163163
+    TNBC-n16: SRR1163164
+    TNBC-n2: SRR1163150
+    TNBC-n3: SRR1163151
+    TNBC-n4: SRR1163152
+    TNBC-n5: SRR1163153
+    TNBC-n6: SRR1163154
+    TNBC-n7: SRR1163155
+    TNBC-n8: SRR1163156
+    TNBC-n9: SRR1163157
+    a1: SRR1163012
+    a2: SRR1163013
+    a3: SRR1163019
+    a4: SRR1163026
+    a5: SRR1163027
+    a6: SRR1163034
+    a7: SRR1163035
+    a8: SRR1163043
+    h1: SRR1163053
+    h2: SRR1163070
+    h3: SRR1163074
+    h4: SRR1163083
+    h5: SRR1163084
+    h6: SRR1163091
+    h7: SRR1163095
+    h8: SRR1163148
+sample_annotations:
+    TNBC-Pop-Normal:
+      amplification: none
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    TNBC-Pop-Tumor:
+      amplification: none
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    TNBC-n1:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    TNBC-n10:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    TNBC-n11:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    TNBC-n12:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    TNBC-n13:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    TNBC-n14:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    TNBC-n15:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    TNBC-n16:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    TNBC-n2:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    TNBC-n3:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    TNBC-n4:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    TNBC-n5:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    TNBC-n6:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    TNBC-n7:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    TNBC-n8:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    TNBC-n9:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    a1:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    a2:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    a3:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    a4:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    a5:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    a6:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    a7:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    a8:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    h1:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    h2:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    h3:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    h4:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    h5:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    h6:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    h7:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE
+    h8:
+      amplification: MDA
+      library_selection: WXS
+      library_source: GENOMIC
+      machine: Illumina HiSeq 2000
+      platform: ILLUMINA
+      layout: SINGLE

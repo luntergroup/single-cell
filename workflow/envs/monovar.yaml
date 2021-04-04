@@ -1,0 +1,10 @@
+name: monovar
+channels:
+    - bioconda
+    - conda-forge
+    - defaults
+dependencies:
+    - monovar=0.0.1
+    - samtools
+    - bcftools
+    - tabix

@@ -2,16 +2,32 @@ include: "rules/data.smk"
 include: "rules/utils.smk"
 include: "rules/mapping.smk"
 include: "rules/octopus.smk"
+include: "rules/prosolo.smk"
+include: "rules/strelka2.smk"
+include: "rules/sccaller.smk"
+include: "rules/monovar.smk"
+include: "rules/sciphi.smk"
+include: "rules/evaluate.smk"
 
 localrules: all
 
 rule all:
-	input:
-		expand("results/calls/{batch}.{library}.{reference}.{mapper}.{caller}.vcf.gz", \
-			batch = config["batches"], \
-			library = config["library"], \
-			caller = config["callers"], \
-			reference = config["reference"], \
-			mapper = config["mapper"])
-			
-			
+    input:
+        expand("results/eval/{project}/{test}.{reference}.{mapper}.{caller}.{sample}.vs.{control}.{filter}.{match}.vcfeval", \
+            project = config["project"], \
+                    test = config["test"], \
+            caller = config["callers"], \
+            reference = config["reference"], \
+            mapper = config["mapper"], \
+            sample = config["groups"]["cells"], \
+            control = config["groups"]["controls"], \
+            filter = ["pass", "raw"], \
+            match = ["GT", "AL"]),
+        expand("results/eval/{project}/{test}.{reference}.{mapper}.{caller}.{sample}.{filter}.somatics.vcfeval", \
+            project = config["project"], \
+            test = config["test"], \
+            caller = config["callers"], \
+            reference = config["reference"], \
+            mapper = config["mapper"], \
+            sample = config["groups"]["cells"] if "normals" in config["groups"] else [], \
+            filter = ["pass", "raw"])

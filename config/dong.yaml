@@ -1,0 +1,83 @@
+project: Dong
+reference: hs38DH
+mapper: bwa
+mapper_options:
+    bwa: ""
+samples:
+    - Hunamp
+    - C-1
+    - C-2
+    - C-3
+    - IL11
+    - IL12
+    - IL1C
+    - IL-2
+    - IL-3
+    - IL-4
+    - IL-5
+groups:
+    bulks:
+        - Hunamp
+        - C-1
+        - C-2
+        - C-3
+        - IL1C
+    cells:
+        - IL-2
+        - IL-3
+        - IL-4
+        - IL-5
+        - IL11
+        - IL12
+    controls:
+        - Hunamp
+        - IL1C
+    kindred_bulk:
+        - IL1C
+    clones:
+        - C-1
+        - C-2
+        - C-3
+    kindred_cells:
+        - IL11
+        - IL12
+    clones_and_cells:
+        - C-1
+        - C-2
+        - C-3
+        - IL-2
+        - IL-3
+        - IL-4
+        - IL-5
+        - IL11
+        - IL12
+test: clones_and_cells
+truth_caller: Strelka2
+callers:
+    - prosolo
+caller_options:
+    Octopus: "--annotations AD"
+    prosolo: ""
+    SCcaller: ""
+    MonoVar: ""
+    SCIPhi: ""
+    Strelka2: ""
+caller_score_fields:
+    Octopus: RFGQ
+    MonoVar: QUAL
+    SCcaller: QUAL
+    prosolo: QUAL
+    SCIPhi: QUAL
+    Strelka2: GQX
+sra:
+    Hunamp: SRR2976567
+    IL11: SRR2976562
+    IL12: SRR2976563
+    IL1C: SRR2976561
+    C-1: SRR2976564
+    C-2: SRR2976565
+    C-3: SRR2976566
+    IL-2: SRR2976568
+    IL-3: SRR2976569
+    IL-4: SRR2976572
+    IL-5: SRR2976573

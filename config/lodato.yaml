@@ -1,0 +1,104 @@
+project: Lodato
+reference: hs38DH
+mapper: bwa
+mapper_options:
+    bwa: ""
+samples:
+    - neuron2
+    - neuron3
+    - neuron5
+    - neuron6
+    - neuron8
+    - neuron12
+    - neuron18
+    - neuron20
+    - neuron24
+    - neuron25
+    - neuron30
+    - neuron39
+    - neuron43
+    - neuron46
+    - neuron47
+    - neuron77
+    - heart
+    - cortex
+    - caudate
+groups:
+    bulks:
+        - heart
+        - cortex
+    minibulk:
+        - caudate
+    controls:
+        - heart
+        - cortex
+    cells:
+        - neuron2
+        - neuron3
+        - neuron5
+        - neuron6
+        - neuron8
+        - neuron12
+        - neuron18
+        - neuron20
+        - neuron24
+        - neuron25
+        - neuron30
+        - neuron39
+        - neuron43
+        - neuron46
+        - neuron47
+        - neuron77
+    cells_and_minibulk:
+        - neuron2
+        - neuron3
+        - neuron5
+        - neuron6
+        - neuron8
+        - neuron12
+        - neuron18
+        - neuron20
+        - neuron24
+        - neuron25
+        - neuron30
+        - neuron39
+        - neuron43
+        - neuron46
+        - neuron47
+        - neuron77
+        - caudate
+test: cells_and_minibulk
+truth_caller: Octopus
+callers:
+    - Octopus
+caller_options:
+    Octopus: ""
+    prosolo: ""
+    SCcaller: ""
+    MonoVar: ""
+caller_score_fields:
+    Octopus: RFGQ_ALL
+    MonoVar: QUAL
+    SCcaller: QUAL
+    prosolo: QUAL
+sra:
+    neuron2: SRR1264615
+    neuron3: SRR1264616
+    neuron5: SRR1264629
+    neuron6: SRR1264618
+    neuron8: SRR1264630
+    neuron12: SRR1264619
+    neuron18: SRR1264620
+    neuron20: SRR1264621
+    neuron24: SRR1264622
+    neuron25: SRR1264623
+    neuron30: SRR1264624
+    neuron39: SRR1264625
+    neuron43: SRR1264626
+    neuron46: SRR1264627
+    neuron47: SRR1264628
+    neuron77: SRR1264617
+    heart: SRR1264613
+    cortex: SRR1264612
+    caudate: SRR1264614
+    

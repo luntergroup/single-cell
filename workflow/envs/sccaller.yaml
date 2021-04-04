@@ -1,9 +1,7 @@
-name: samtools
+name: sccaller
 channels:
     - bioconda
     - conda-forge
     - defaults
 dependencies:
-    - tabix=0.2.6
-    - samtools=1.12
-    - bcftools=1.12
+    - sccaller=2.0.0

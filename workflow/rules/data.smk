@@ -22,20 +22,42 @@ rule generate_hs38DH_chromosomes_bed:
 
 localrules: download_hs38DH
 
-rule download_sra:
+rule download_sra_single:
 	output:
-		fq1 = "data/reads/raw/{sample}.{library}.R1.fastq.gz",
-		fq2 = "data/reads/raw/{sample}.{library}.R2.fastq.gz"
+		"data/reads/raw/{project}/{sample}.fastq.gz",
 	conda:
 		"../envs/sra-tools.yaml"
 	params:
 		accession = lambda wildcards: config["sra"][(wildcards.sample)]
+	wildcard_constraints:
+			sample='|'.join([re.escape(s) for s,_ in config["sra"].items()])
 	shell:
 		"""
-		prefetch {params.accession}
-		fastq-dump -3 {params.accession}
+		prefetch --max-size 200G {params.accession}
+		fastq-dump {params.accession}
+		rm -rf {params.accession}
+		gzip -c {params.accession}.fastq > {output}
+		rm {params.accession}.fastq
+		"""
+
+rule download_sra_paired:
+	output:
+		fq1 = "data/reads/raw/{project}/{sample}.R1.fastq.gz",
+		fq2 = "data/reads/raw/{project}/{sample}.R2.fastq.gz"
+	conda:
+		"../envs/sra-tools.yaml"
+	params:
+		accession = lambda wildcards: config["sra"][(wildcards.sample)]
+	wildcard_constraints:
+			sample='|'.join([re.escape(s) for s,_ in config["sra"].items()])
+	shell:
+		"""
+		prefetch --max-size 200G {params.accession}
+		fastq-dump --split-3 {params.accession}
 		rm -rf {params.accession}
 		gzip -c {params.accession}_1.fastq > {output.fq1}
 		gzip -c {params.accession}_2.fastq > {output.fq2}
 		rm {params.accession}_1.fastq {params.accession}_2.fastq
 		"""
+
+localrules: download_sra_single, download_sra_paired
