@@ -96,22 +96,41 @@ groups:
         - TNBC-n14
         - TNBC-n15
         - TNBC-n16
+    normal_cells:
+        - TNBC-n1
+        - TNBC-n2
+        - TNBC-n3
+        - TNBC-n4
+        - TNBC-n5
+        - TNBC-n6
+        - TNBC-n7
+        - TNBC-n8
+        - TNBC-n9
+        - TNBC-n10
+        - TNBC-n11
+        - TNBC-n12
+        - TNBC-n13
+        - TNBC-n14
+        - TNBC-n15
+        - TNBC-n16
 test: cells
 truth_caller: Strelka2
 callers:
-    - Octopus
+    - Octopus 
+    - MonoVar
     - SCcaller
+    - Prosolo
 caller_options:
     Octopus: ""
-    prosolo: ""
+    Prosolo: ""
     SCcaller: ""
     MonoVar: ""
     SCIPhi: ""
 caller_score_fields:
-    Octopus: RFGQ_ALL
-    MonoVar: QUAL
-    SCcaller: QUAL
-    prosolo: QUAL
+    Octopus: RFGQ
+    MonoVar: GQ
+    SCcaller: GQ
+    Prosolo: GQ
     SCIPhi: QUAL
 sra:
     TNBC-Pop-Normal: SRR1163508

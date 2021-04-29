@@ -63,6 +63,9 @@ def main(args):
     bcftools_concat_cmd = ['bcftools', 'concat', '-Ob', '-o', args.output] + tmp_bcfs
     print(" ".join(str(c) for c in bcftools_concat_cmd))
     sp.call(bcftools_concat_cmd)
+    bcftools_index_cmd = ['bcftools', 'index', args.output]
+    print(" ".join(str(c) for c in bcftools_index_cmd))
+    sp.call(bcftools_index_cmd)
     for tmp_bcf in tmp_bcfs:
         tmp_bcf.unlink()
     tmp_dir.rmdir()

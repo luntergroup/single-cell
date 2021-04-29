@@ -10,10 +10,10 @@ def _get_sample_dropout_option(wildcards):
 
 def _get_normal_samples(wildcards):
     result = []
-    if "normal" in config["groups"]:
+    if "normals" in config["groups"]:
         for sample in config["groups"][wildcards.group]:
-            if sample in config["groups"]["normal"]:
-                normals.append(sample)
+            if sample in config["groups"]["normals"]:
+                result.append(sample)
     return result
 
 def _get_normal_samples_option(wildcards):
@@ -57,7 +57,7 @@ rule octopus_call:
         sequence_model = _get_sequence_error_model,
         normals = _get_normal_samples_option,
         sample_dropouts = _get_sample_dropout_option,
-        forest = "/well/gerton/dan/apps/octopus/resources/forests/germline.v0.7.1.forest",
+        forest = "/opt/octopus/resources/forests/cell.forest",
         other = config["caller_options"]["Octopus"]
     log:
         "logs/{project}/octopus/{group}.{reference}.{mapper}.log"
@@ -65,7 +65,7 @@ rule octopus_call:
         "results/benchmarks/{project}/octopus/{group}.{reference}.{mapper}.tsv"
     threads: 20
     container:
-        "docker://dancooke/octopus"
+        "docker://dancooke/octopus:sc_paper"
     shell:
         "(octopus \
          -C {params.calling_model} \
@@ -77,7 +77,7 @@ rule octopus_call:
          --mask-inverted-soft-clipping \
          --mask-3prime-shifted-soft-clipped-heads \
          --sequence-error-model {params.sequence_model} \
-         --max-vb-seeds 50 \
+         --forest {params.forest} \
          {params.normals} \
          {params.sample_dropouts} \
          {params.other}) \
@@ -96,3 +96,5 @@ rule get_octopus_somatic:
         """
         bcftools view -i 'SOMATIC=1' -Oz -o {output.vcf} {input.vcf} && tabix {output.vcf}
         """
+
+localrules: get_octopus_somatic

@@ -61,6 +61,7 @@ rule fix_sccaller:
                     else:
                         if "No.variants<4" in rec[6]: continue
                         ref, alt = rec[3], rec[4]
+                        if any(b not in ['A', 'C', 'G', 'T', 'N'] for b in ref): continue
                         alts = alt.split(',')
                         if '-' in alt:
                             longest_del = ""
@@ -129,7 +130,17 @@ def _get_sccaller_vcfs(wildcards):
             bulk_group = group
             break
     if bulk_group is None:
-        raise Exception("No valid bulk group")
+        normal_cells = []
+        if "normals" in config["groups"]:
+            for cell in cells:
+                if cell in config["groups"]["normals"]:
+                    normal_cells.append(cell)
+            for group, samples in config["groups"].items():
+                if set(samples) == set(normal_cells):
+                    bulk_group = group
+                    break
+        if bulk_group is None:
+            raise Exception("No valid bulk group")
     res = []
     for cell in cells:
         res.append("results/calls/" + wildcards.project + "/" + cell + "+" + bulk_group + "." + wildcards.reference + "." + wildcards.mapper + ".SCcaller.vcf.gz")
@@ -177,7 +188,17 @@ def _get_sccaller_somatic_vcfs(wildcards):
             bulk_group = group
             break
     if bulk_group is None:
-        raise Exception("No valid bulk group")
+        normal_cells = []
+        if "normals" in config["groups"]:
+            for cell in cells:
+                if cell in config["groups"]["normals"]:
+                    normal_cells.append(cell)
+            for group, samples in config["groups"].items():
+                if set(samples) == set(normal_cells):
+                    bulk_group = group
+                    break
+        if bulk_group is None:
+            raise Exception("No valid bulk group")
     res = []
     for cell in cells:
         res.append("results/calls/" + wildcards.project + "/" + cell + "+" + bulk_group + "." + wildcards.reference + "." + wildcards.mapper + ".SCcaller.somatics.vcf.gz")

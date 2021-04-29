@@ -52,12 +52,17 @@ groups:
         - IL11
         - IL12
 test: clones_and_cells
+subclonal_control: IL1C
+subclonal_targets: kindred_cells
 truth_caller: Strelka2
 callers:
-    - prosolo
+    - Octopus
+    - MonoVar
+    - SCcaller
+    - Prosolo
 caller_options:
     Octopus: "--annotations AD"
-    prosolo: ""
+    Prosolo: ""
     SCcaller: ""
     MonoVar: ""
     SCIPhi: ""
@@ -65,8 +70,12 @@ caller_options:
 caller_score_fields:
     Octopus: RFGQ
     MonoVar: QUAL
-    SCcaller: QUAL
-    prosolo: QUAL
+    SCcaller:
+        AL: QUAL 
+        GT: GQ
+    Prosolo:
+        AL: QUAL 
+        GT: GQ
     SCIPhi: QUAL
     Strelka2: GQX
 sra:

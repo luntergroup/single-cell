@@ -15,7 +15,7 @@ rule all:
     input:
         expand("results/eval/{project}/{test}.{reference}.{mapper}.{caller}.{sample}.vs.{control}.{filter}.{match}.vcfeval", \
             project = config["project"], \
-                    test = config["test"], \
+            test = config["test"], \
             caller = config["callers"], \
             reference = config["reference"], \
             mapper = config["mapper"], \
@@ -30,4 +30,15 @@ rule all:
             reference = config["reference"], \
             mapper = config["mapper"], \
             sample = config["groups"]["cells"] if "normals" in config["groups"] else [], \
-            filter = ["pass", "raw"])
+            filter = ["pass", "raw"]),
+        expand("results/eval/{project}/{test}.{reference}.{mapper}.{caller}.{filter}.{match}.{control}.{targets}.isec", \
+            project = config["project"], \
+            test = config["test"], \
+            caller = config["callers"], \
+            reference = config["reference"], \
+            mapper = config["mapper"], \
+            sample = config["groups"]["cells"], \
+            control = config["subclonal_control"] if "subclonal_control" in config else [], \
+            targets = config["subclonal_targets"] if "subclonal_targets" in config else [], \
+            filter = ["pass", "raw"], \
+            match = ["GT", "AL"]),
