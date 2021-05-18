@@ -1,8 +1,8 @@
 rule download_cell_forest:
-	output:
-		"workflow/resources/octopus/forests/cell.forest"
-	shell:
-		"curl https://storage.googleapis.com/luntergroup/octopus/forests/cell.v0.7.4.forest.gz | gunzip > {output}"
+    output:
+        "workflow/resources/octopus/forests/cell.forest"
+    shell:
+        "curl https://storage.googleapis.com/luntergroup/octopus/forests/cell.v0.7.4.forest.gz | gunzip > {output}"
 localrules: download_cell_forest
 
 def _get_sample_dropout_option(wildcards):
