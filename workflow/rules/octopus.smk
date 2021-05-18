@@ -1,3 +1,10 @@
+rule download_cell_forest:
+	output:
+		"workflow/resources/octopus/forests/cell.forest"
+	shell:
+		"curl https://storage.googleapis.com/luntergroup/octopus/forests/cell.v0.7.4.forest.gz | gunzip > {output}"
+localrules: download_cell_forest
+
 def _get_sample_dropout_option(wildcards):
     concentrations = []
     for sample in config["groups"][wildcards.group]:
@@ -57,15 +64,15 @@ rule octopus_call:
         sequence_model = _get_sequence_error_model,
         normals = _get_normal_samples_option,
         sample_dropouts = _get_sample_dropout_option,
-        forest = "/opt/octopus/resources/forests/cell.forest",
+        forest = rules.download_cell_forest.output,
         other = config["caller_options"]["Octopus"]
     log:
         "logs/{project}/octopus/{group}.{reference}.{mapper}.log"
     benchmark:
         "results/benchmarks/{project}/octopus/{group}.{reference}.{mapper}.tsv"
     threads: 20
-    container:
-        "docker://dancooke/octopus:sc_paper"
+    conda:
+        "../envs/octopus.yaml"
     shell:
         "(octopus \
          -C {params.calling_model} \
