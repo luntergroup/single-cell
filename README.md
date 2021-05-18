@@ -31,5 +31,5 @@ $ conda activate single-cell
 Each set of experiments is specified in a YAML config file in the `config` directory. For example, to run the fibroblast analysis:
 
 ```shell
-$ snakemake --configfile config/dong.yaml --use-conda --use-singularity -j 100 --cluster "qsub -cwd -V -j y -P mygroup.prj -q long.qf -pe shmem {threads}"
+$ snakemake --configfile config/dong.yaml --use-conda -j 100 --cluster "qsub -cwd -V -j y -P mygroup.prj -q long.qf -pe shmem {threads}"
 ```
